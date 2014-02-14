@@ -1,12 +1,9 @@
 #ifndef ADAFRUIT_NEOPIXEL_MARQUEE_H
 #define ADAFRUIT_NEOPIXEL_MARQUEE_H
 
-#if (ARDUINO >= 100)
- #include <Arduino.h>
-#else
- #include <WProgram.h>
- #include <pins_arduino.h>
-#endif
+#include <stdint.h>
+#include <StandardCplusplus.h>
+#include <vector>
 
 class Adafruit_NeoPixel;
 
@@ -19,6 +16,7 @@ class Adafruit_NeoPixel_Marquee {
         void begin();
         void show();
         void clear();
+		void shiftRegionHoriz(int16_t start, int16_t end, int16_t distance);
         void shiftHoriz(int16_t distance);
         void shiftVert(int16_t distance);
         void setBrightness(uint8_t brightness);
@@ -26,6 +24,7 @@ class Adafruit_NeoPixel_Marquee {
         void setPixelColor(uint16_t row, uint16_t n, uint8_t r, uint8_t g, uint8_t b);
         void setPixelColor(uint16_t row, uint16_t n, uint32_t c);
         uint32_t getPixelColor(uint16_t row, uint16_t n) const;
+        void setColumn(uint16_t n, std::vector<uint32_t> col);
 
         uint16_t getNumRows() const;
         uint16_t getNumColumns() const;

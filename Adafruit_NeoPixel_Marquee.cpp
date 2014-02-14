@@ -48,6 +48,17 @@ void Adafruit_NeoPixel_Marquee::clear()
     shiftHoriz(m_numColumns);
  }
 
+void Adafruit_NeoPixel_Marquee::shiftRegionHoriz(int16_t start, int16_t end, int16_t distance)
+{
+    for(int i = 0; i < m_numRows; i++)
+    { 
+        m_marquee[i]->shiftRegion(start, end, distance);
+    }
+    
+    show();
+}
+ 
+ 
 void Adafruit_NeoPixel_Marquee::shiftHoriz(int16_t distance)
 {
     for(int i = 0; i < m_numRows; i++)
@@ -90,6 +101,19 @@ void Adafruit_NeoPixel_Marquee::setPixelColor(uint16_t row, uint16_t n, uint32_t
     
     m_marquee[row]->setPixelColor(n, c);
 }
+
+void Adafruit_NeoPixel_Marquee::setColumn(uint16_t n, std::vector<uint32_t> col)
+{
+    if(col.size() == m_numRows)
+    {
+        for(int i=0; i < m_numRows; i++)
+        {
+            setPixelColor(i, n, col[i]);
+        }
+    }
+	show();
+}
+
 
 uint32_t Adafruit_NeoPixel_Marquee::getPixelColor(uint16_t row, uint16_t n) const
 {
