@@ -2,8 +2,6 @@
 #define ADAFRUIT_NEOPIXEL_MARQUEE_H
 
 #include <stdint.h>
-#include <StandardCplusplus.h>
-#include <vector>
 
 class Adafruit_NeoPixel;
 
@@ -24,7 +22,7 @@ class Adafruit_NeoPixel_Marquee {
         void setPixelColor(uint16_t row, uint16_t n, uint8_t r, uint8_t g, uint8_t b);
         void setPixelColor(uint16_t row, uint16_t n, uint32_t c);
         uint32_t getPixelColor(uint16_t row, uint16_t n) const;
-        void setColumn(uint16_t n, std::vector<uint32_t> col);
+        void setColumn(uint16_t n, uint32_t* col);
 
         uint16_t getNumRows() const;
         uint16_t getNumColumns() const;

@@ -1,5 +1,3 @@
-
-
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_NeoPixel_Marquee.h>
 
@@ -102,15 +100,14 @@ void Adafruit_NeoPixel_Marquee::setPixelColor(uint16_t row, uint16_t n, uint32_t
     m_marquee[row]->setPixelColor(n, c);
 }
 
-void Adafruit_NeoPixel_Marquee::setColumn(uint16_t n, std::vector<uint32_t> col)
+void Adafruit_NeoPixel_Marquee::setColumn(uint16_t n, uint32_t* col)
 {
-    if(col.size() == m_numRows)
+    for(int i=0; i < m_numRows; i++)
     {
-        for(int i=0; i < m_numRows; i++)
-        {
-            setPixelColor(i, n, col[i]);
-        }
+        setPixelColor(i, n, col[i]);
     }
+    
+    delete[] col;
 	show();
 }
 
