@@ -5,10 +5,16 @@
 
 class Adafruit_NeoPixel;
 
+enum StripLayout
+{
+    PARALLEL_LAYOUT = 0,
+    SERIAL_LAYOUT
+};
+
 class Adafruit_NeoPixel_Marquee {
 
     public:
-        Adafruit_NeoPixel_Marquee(uint16_t numStrips, uint16_t stripLength, uint8_t startPin, uint8_t type);
+        Adafruit_NeoPixel_Marquee(uint16_t numStrips, uint16_t stripLength, uint8_t startPin, uint8_t layout, uint8_t type);
         ~Adafruit_NeoPixel_Marquee();
         
         void begin();
@@ -31,11 +37,14 @@ class Adafruit_NeoPixel_Marquee {
         Adafruit_NeoPixel_Marquee( const Adafruit_NeoPixel_Marquee& val);
         const Adafruit_NeoPixel_Marquee& operator=(const Adafruit_NeoPixel_Marquee& val);
         
+        uint8_t getArrayLen();
+        
         
         Adafruit_NeoPixel ** m_marquee;
         uint16_t m_numRows;
         uint16_t m_numColumns;
         uint8_t m_startPin;
+        uint8_t m_layout;
         uint8_t m_type;
 };
 
